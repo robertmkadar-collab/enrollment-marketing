@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Methodology — Enrollment Marketing Wizards</title>
+<meta name="description" content="Why the lead funnel doesn't match reality, and what to do instead. A data-backed enrollment marketing methodology for graduate programs.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600;700&family=Hanken+Grotesk:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --plum-950:#000000;
+    --plum-900:#0A0A0A;
+    --plum-800:#1A1A1A;
+    --plum-700:#DC267F;
+    --plum-600:#C71F70;
+    --plum-500:#E66BA0;
+    --plum-300:#F3B7D0;
+    --plum-200:#FBE0EB;
+    --plum-100:#FDF0F5;
+    --plum-050:#FEF7FA;
+
+    --ink:#0A0A0A;
+    --ink-2:#1A1A1A;
+    --ink-3:#525252;
+    --ink-4:#9C9C9C;
+    --line:#E8E8E8;
+    --line-2:#D4D4D4;
+
+    --bg:#FFFFFF;
+    --bg-soft:#FAFAFA;
+    --card:#FFFFFF;
+
+    --good:#16A34A;
+    --bad:#DC2626;
+
+    --font-display:"Hanken Grotesk", ui-sans-serif, system-ui, sans-serif;
+    --font-body:"Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-mono:"JetBrains Mono", ui-monospace, monospace;
+    --font-serif:"EB Garamond", "Georgia", serif;
+
+    --gradient:linear-gradient(90deg, #5B7FE5 0%, #8B4FB0 50%, #DC267F 100%);
+  }
+
+  *{box-sizing:border-box}
+  html,body{
+    margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  }
+  body{min-height:100vh;overflow-x:hidden;position:relative}
+
+  body::before{
+    content:"";position:fixed;top:0;left:0;right:0;height:5px;
+    background:var(--gradient);
+    z-index:100;
+  }
+
+  a{color:var(--ink);text-decoration:none}
+  ::selection{background:var(--plum-700);color:#fff}
+
+  .divider{
+    height:2px;background:var(--gradient);border:0;margin:0;width:100%;
+  }
+
+  /* =================== NAV =================== */
+  .nav{
+    position:relative;z-index:5;
+    max-width:1320px;margin:0 auto;padding:32px 32px 24px;
+    display:flex;justify-content:space-between;align-items:center;gap:24px;
+  }
+  .nav .logo{
+    display:flex;align-items:center;gap:12px;
+    font-family:var(--font-display);font-weight:800;font-size:18px;color:var(--ink);
+    letter-spacing:-.02em;text-decoration:none;
+  }
+  .nav .logo .mark{
+    min-width:34px;height:34px;padding:0 9px;
+    background:var(--ink);color:#fff;
+    display:grid;place-items:center;font-family:var(--font-display);font-weight:900;font-size:13px;
+    letter-spacing:.03em;
+  }
+  .nav .links{display:flex;gap:32px;align-items:center}
+  .nav .links a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;font-family:var(--font-body)}
+  .nav .links a:hover{color:var(--plum-700)}
+  .nav .links a.active{color:var(--plum-700);border-bottom:2px solid var(--plum-700);padding-bottom:2px}
+  .nav .links a.cta{
+    background:var(--ink);color:#fff;padding:12px 22px;text-decoration:none;
+    font-size:15px;font-weight:600;font-family:var(--font-body);
+    transition:background .15s;
+  }
+  .nav .links a.cta:hover{background:var(--plum-700);color:#fff}
+
+  /* =================== ARTICLE LAYOUT =================== */
+  .article{
+    max-width:1100px;margin:0 auto;padding:0 32px;
+  }
+  .article-head{
+    padding:64px 0 80px;max-width:920px;
+  }
+  .crumb{
+    font-family:var(--font-body);font-size:14px;color:var(--ink-3);margin:0 0 32px;
+  }
+  .crumb .sep{color:var(--ink-3);margin:0 8px}
+  .crumb a{color:var(--ink-3)}
+  .crumb a:hover{color:var(--plum-700)}
+  .crumb .current{color:var(--ink);font-weight:600}
+
+  .eyebrow{
+    font-family:var(--font-body);font-size:13px;letter-spacing:.06em;color:var(--ink);font-weight:700;
+    text-transform:uppercase;margin:0 0 24px;padding-bottom:14px;border-bottom:1px solid var(--ink);
+    display:block;max-width:560px;
+  }
+
+  h1.thesis{
+    font-family:var(--font-display);font-weight:800;font-size:104px;line-height:.94;letter-spacing:-.04em;
+    margin:0 0 32px;color:var(--ink);
+  }
+  h1.thesis .accent{color:var(--plum-700)}
+  .lede{
+    font-size:23px;line-height:1.5;color:var(--ink-2);margin:0 0 16px;max-width:760px;font-weight:400;
+  }
+  .lede b{color:var(--ink);font-weight:700}
+
+  .byline{
+    font-family:var(--font-body);font-size:14px;color:var(--ink-3);
+    padding:24px 0 0;border-top:1px solid var(--line);margin-top:32px;max-width:760px;
+    display:flex;flex-wrap:wrap;gap:24px;
+  }
+  .byline span{display:inline-flex;gap:6px}
+  .byline span b{color:var(--ink);font-weight:600}
+
+  /* =================== SECTIONS =================== */
+  section.s{
+    max-width:1100px;margin:0 auto;padding:80px 32px;
+  }
+  section.s.tight{padding:64px 32px}
+  section.s.wide{max-width:1320px}
+
+  h2.section-title{
+    font-family:var(--font-display);font-weight:800;font-size:64px;line-height:1.02;letter-spacing:-.035em;
+    margin:0 0 32px;color:var(--ink);max-width:880px;
+  }
+  h2.section-title .accent{color:var(--plum-700)}
+
+  p.body{
+    font-size:19px;line-height:1.6;color:var(--ink-2);margin:0 0 22px;max-width:760px;
+  }
+  p.body b{color:var(--ink);font-weight:700}
+  p.body.lead{font-size:21px;color:var(--ink)}
+
+  /* =================== DARK CALLOUT (the big moment) =================== */
+  .dark-panel{
+    background:var(--ink);color:#fff;
+    padding:120px 32px;
+    text-align:left;
+  }
+  .dark-panel-inner{max-width:1100px;margin:0 auto}
+  .dark-panel .eyebrow{color:#fff;border-bottom-color:#fff}
+  .dark-panel h2{
+    font-family:var(--font-display);font-weight:900;letter-spacing:-.04em;color:#fff;
+    margin:0 0 40px;
+  }
+  .dark-panel h2.massive{
+    font-size:96px;line-height:.96;
+  }
+  .dark-panel h2 .accent{color:var(--plum-700)}
+  .dark-panel p{
+    font-size:21px;line-height:1.55;color:rgba(255,255,255,.85);margin:0 0 22px;max-width:820px;
+  }
+  .dark-panel p b{color:#fff;font-weight:600}
+
+  /* Giant statistic */
+  .megastat{
+    font-family:var(--font-display);font-weight:900;font-size:240px;line-height:.85;
+    letter-spacing:-.05em;color:var(--plum-700);margin:0 0 8px;
+  }
+  .megastat-label{
+    font-family:var(--font-display);font-weight:700;font-size:28px;line-height:1.2;color:#fff;
+    max-width:680px;margin:0 0 40px;letter-spacing:-.02em;
+  }
+  .megastat-foot{
+    font-family:var(--font-body);font-size:15px;color:rgba(255,255,255,.6);
+    padding-top:24px;border-top:1px solid rgba(255,255,255,.2);max-width:680px;
+  }
+
+  /* =================== 4-UP GRID (the 4 forces) =================== */
+  .four-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:0;
+    border-top:1px solid var(--ink);border-left:1px solid var(--ink);
+    margin-top:24px;
+  }
+  .four-grid .cell{
+    border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);
+    padding:36px 32px;background:#fff;
+    transition:background .15s;
+  }
+  .four-grid .cell:hover{background:var(--plum-050)}
+  .four-grid .cell-num{
+    font-family:var(--font-mono);font-size:12px;color:var(--plum-700);font-weight:700;
+    letter-spacing:.05em;margin:0 0 14px;
+  }
+  .four-grid .cell h3{
+    font-family:var(--font-display);font-weight:800;font-size:24px;letter-spacing:-.025em;
+    margin:0 0 14px;color:var(--ink);line-height:1.2;
+  }
+  .four-grid .cell p{
+    font-size:15px;line-height:1.55;color:var(--ink-2);margin:0;
+  }
+
+  /* =================== COMPARISON COLUMNS =================== */
+  .compare{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;
+    border-top:1.5px solid var(--ink);
+  }
+  .compare .col{
+    padding:36px 32px;border-right:1px solid var(--ink);
+  }
+  .compare .col:last-child{border-right:none;background:var(--plum-050)}
+  .compare .col .label{
+    font-family:var(--font-body);font-size:12px;font-weight:700;text-transform:uppercase;
+    letter-spacing:.1em;color:var(--ink-3);margin:0 0 18px;
+  }
+  .compare .col:last-child .label{color:var(--plum-700)}
+  .compare .col h3{
+    font-family:var(--font-display);font-weight:800;font-size:26px;letter-spacing:-.025em;
+    line-height:1.2;color:var(--ink);margin:0 0 16px;
+  }
+  .compare .col ul{
+    margin:0;padding:0;list-style:none;
+  }
+  .compare .col ul li{
+    font-size:16px;line-height:1.55;color:var(--ink-2);padding:10px 0;
+    border-top:1px solid var(--line);
+  }
+  .compare .col ul li:first-child{border-top:none}
+  .compare .col p.callout{
+    font-family:var(--font-display);font-weight:700;font-size:22px;line-height:1.3;letter-spacing:-.02em;
+    color:var(--ink);margin:8px 0 0;
+  }
+
+  /* =================== HORIZONTAL FUNNEL DIAGRAM =================== */
+  .funnel-row{
+    display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:stretch;gap:0;
+    margin:32px 0 16px;
+  }
+  .funnel-stage{
+    background:#fff;border:1.5px solid var(--ink);padding:24px 22px;
+  }
+  .funnel-stage .stage-label{
+    font-family:var(--font-mono);font-size:11px;color:var(--ink-3);letter-spacing:.06em;
+    text-transform:uppercase;margin:0 0 10px;font-weight:700;
+  }
+  .funnel-stage h4{
+    font-family:var(--font-display);font-weight:800;font-size:32px;letter-spacing:-.03em;
+    margin:0 0 10px;color:var(--ink);line-height:1;
+  }
+  .funnel-stage p{
+    font-size:14px;line-height:1.5;color:var(--ink-2);margin:0;
+  }
+  .funnel-arrow{
+    display:grid;place-items:center;padding:0 16px;
+    font-family:var(--font-display);font-weight:300;color:var(--ink-3);font-size:32px;
+  }
+  .funnel-note{
+    font-size:15px;line-height:1.55;color:var(--ink-3);font-style:italic;max-width:760px;margin-top:0;
+  }
+
+  /* =================== ENGAGEMENT BARS =================== */
+  .engage-bars{
+    margin-top:32px;display:flex;flex-direction:column;gap:14px;
+  }
+  .engage-row{
+    display:grid;grid-template-columns:280px 1fr 70px;align-items:center;gap:18px;
+  }
+  .engage-row .name{
+    font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--ink);
+  }
+  .engage-row .bar-wrap{
+    background:var(--line);height:36px;position:relative;overflow:hidden;
+  }
+  .engage-row .bar{
+    background:var(--plum-700);height:100%;
+  }
+  .engage-row .pct{
+    font-family:var(--font-display);font-weight:900;font-size:32px;color:var(--ink);
+    letter-spacing:-.02em;text-align:right;
+  }
+
+  /* =================== STEPPING STONES SVG =================== */
+  .stones-wrap{
+    margin:32px 0 24px;background:#fff;border:1.5px solid var(--ink);padding:36px 32px;
+  }
+  .stones-svg{width:100%;height:auto;display:block}
+
+  /* =================== AUDIENCE PYRAMID =================== */
+  .pyramid{
+    display:flex;flex-direction:column;gap:14px;margin-top:32px;max-width:880px;
+  }
+  .pyramid-row{
+    display:grid;grid-template-columns:96px 1fr 220px;align-items:center;gap:24px;
+  }
+  .pyramid-row .pct{
+    font-family:var(--font-display);font-weight:900;font-size:48px;color:var(--plum-700);
+    letter-spacing:-.03em;line-height:1;text-align:right;
+  }
+  .pyramid-row .bar{
+    background:var(--ink);color:#fff;padding:18px 22px;
+    font-family:var(--font-display);font-weight:700;font-size:18px;letter-spacing:-.02em;
+  }
+  .pyramid-row.r60 .bar{width:100%}
+  .pyramid-row.r30 .bar{width:62%}
+  .pyramid-row.r10 .bar{width:24%}
+  .pyramid-row .desc{
+    font-size:14px;line-height:1.45;color:var(--ink-2);
+  }
+  .pyramid-foot{
+    font-size:15px;line-height:1.55;color:var(--ink-3);margin-top:24px;max-width:760px;font-style:italic;
+  }
+
+  /* =================== 60-30-10 LEVERS =================== */
+  .levers{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+    margin-top:32px;border-top:1.5px solid var(--ink);border-left:1.5px solid var(--ink);
+  }
+  .levers .lever{
+    border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink);
+    padding:36px 28px;background:#fff;
+  }
+  .levers .lever:first-child{background:var(--plum-050)}
+  .levers .lever .pct{
+    font-family:var(--font-display);font-weight:900;font-size:88px;letter-spacing:-.04em;
+    color:var(--plum-700);line-height:1;margin:0 0 12px;
+  }
+  .levers .lever h3{
+    font-family:var(--font-display);font-weight:800;font-size:22px;letter-spacing:-.02em;
+    margin:0 0 14px;color:var(--ink);text-transform:uppercase;letter-spacing:.04em;
+  }
+  .levers .lever p{
+    font-size:14px;line-height:1.55;color:var(--ink-2);margin:0;
+  }
+
+  /* =================== JOURNEY METRICS =================== */
+  .journey-metrics{
+    display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:32px;
+    border:1.5px solid var(--ink);
+  }
+  .journey-metrics .met{
+    padding:48px 36px;border-right:1.5px solid var(--ink);
+  }
+  .journey-metrics .met:last-child{border-right:none}
+  .journey-metrics .num{
+    font-family:var(--font-display);font-weight:900;font-size:120px;line-height:.9;
+    letter-spacing:-.04em;color:var(--ink);margin:0 0 4px;
+  }
+  .journey-metrics .unit{
+    font-family:var(--font-display);font-weight:700;font-size:24px;color:var(--plum-700);
+    margin:0 0 18px;letter-spacing:-.02em;
+  }
+  .journey-metrics .desc{
+    font-size:15px;line-height:1.55;color:var(--ink-2);margin:0 0 8px;
+  }
+  .journey-metrics .foot{
+    font-family:var(--font-mono);font-size:12px;color:var(--ink-3);margin:0;
+  }
+
+  /* =================== EVIDENCE CHART =================== */
+  .evidence-card{
+    margin-top:32px;background:#fff;border:2px solid var(--plum-700);padding:40px 36px;
+  }
+  .evidence-card svg{width:100%;height:auto;display:block;margin-top:16px}
+  .evidence-takeaway{
+    font-family:var(--font-display);font-weight:700;font-size:22px;line-height:1.3;letter-spacing:-.02em;
+    color:var(--ink);margin:24px 0 0;padding-top:24px;border-top:1px solid var(--line);
+  }
+  .evidence-takeaway .accent{color:var(--plum-700)}
+
+  /* =================== PULL QUOTE =================== */
+  .pullquote{
+    border-left:4px solid var(--plum-700);padding:24px 32px;margin:32px 0;
+    background:var(--plum-050);
+  }
+  .pullquote q{
+    quotes:"\201C" "\201D";
+    font-family:var(--font-display);font-style:italic;font-weight:600;font-size:24px;
+    line-height:1.35;letter-spacing:-.02em;color:var(--ink);display:block;margin:0 0 14px;
+  }
+  .pullquote q::before{content:open-quote;color:var(--plum-700)}
+  .pullquote q::after{content:close-quote;color:var(--plum-700)}
+  .pullquote cite{
+    font-family:var(--font-body);font-style:normal;font-size:14px;color:var(--ink-3);
+    font-weight:500;
+  }
+
+  /* =================== EXAMPLE LIST =================== */
+  .example{
+    margin-top:24px;background:#fff;border:2px solid var(--plum-700);padding:32px;
+    max-width:760px;
+  }
+  .example .label{
+    font-family:var(--font-mono);font-size:11px;color:var(--plum-700);letter-spacing:.1em;
+    text-transform:uppercase;font-weight:700;margin:0 0 14px;
+  }
+  .example h4{
+    font-family:var(--font-display);font-weight:800;font-size:22px;letter-spacing:-.025em;
+    color:var(--ink);margin:0 0 18px;line-height:1.2;
+  }
+  .example ul{
+    margin:0;padding:0;list-style:none;
+  }
+  .example ul li{
+    font-size:15px;line-height:1.6;color:var(--ink-2);padding:10px 0;
+    border-top:1px solid var(--line);
+  }
+  .example ul li:first-child{border-top:none}
+  .example ul li b{color:var(--ink);font-weight:700}
+
+  /* =================== PRINCIPLES =================== */
+  .principles{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:32px;
+    border-top:1.5px solid var(--ink);
+  }
+  .principle{
+    padding:32px 28px;border-right:1px solid var(--ink);border-bottom:1.5px solid var(--ink);
+  }
+  .principle:last-child{border-right:none}
+  .principle .pnum{
+    font-family:var(--font-mono);font-size:12px;color:var(--plum-700);font-weight:700;
+    margin:0 0 14px;letter-spacing:.05em;
+  }
+  .principle h3{
+    font-family:var(--font-display);font-weight:800;font-size:22px;letter-spacing:-.025em;
+    color:var(--ink);margin:0 0 12px;line-height:1.2;
+  }
+  .principle p{
+    font-size:14px;line-height:1.55;color:var(--ink-2);margin:0;
+  }
+
+  /* =================== 5-FACTORS =================== */
+  .factors{
+    display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin-top:32px;
+    border-top:1.5px solid var(--ink);border-left:1px solid var(--ink);
+  }
+  .factor{
+    padding:28px 20px;border-right:1px solid var(--ink);border-bottom:1.5px solid var(--ink);
+  }
+  .factor:last-child{border-right:none}
+  .factor h4{
+    font-family:var(--font-display);font-weight:800;font-size:18px;letter-spacing:-.02em;
+    color:var(--ink);margin:0 0 12px;line-height:1.2;
+  }
+  .factor p{
+    font-size:13px;line-height:1.5;color:var(--ink-2);margin:0;
+  }
+
+  /* =================== FINAL CTA =================== */
+  .final-cta{
+    background:var(--ink);color:#fff;padding:96px 32px;
+  }
+  .final-cta-inner{max-width:1100px;margin:0 auto}
+  .final-cta h2{
+    font-family:var(--font-display);font-weight:800;font-size:64px;line-height:1.02;letter-spacing:-.035em;
+    margin:0 0 28px;color:#fff;max-width:880px;
+  }
+  .final-cta h2 .accent{color:var(--plum-700)}
+  .final-cta p{
+    font-size:20px;line-height:1.55;color:rgba(255,255,255,.85);margin:0 0 40px;max-width:680px;
+  }
+  .final-cta .btn{
+    background:var(--plum-600);color:#fff;padding:18px 36px;text-decoration:none;
+    font-size:16px;font-weight:700;font-family:var(--font-body);
+    display:inline-flex;align-items:center;gap:10px;
+    transition:background .15s,color .15s;
+  }
+  .final-cta .btn:hover{background:#fff;color:var(--ink)}
+  .subnote{
+    font-family:var(--font-body);font-size:14px;color:rgba(255,255,255,.6);margin-top:22px;
+  }
+
+  /* =================== FOOTER =================== */
+  .footer{
+    max-width:1320px;margin:0 auto;padding:36px 32px;border-top:1px solid var(--line);
+    display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--ink-3);gap:14px;
+  }
+  .footer .links{display:flex;gap:28px}
+  .footer .links a{color:var(--ink-3);text-decoration:none}
+  .footer .links a:hover{color:var(--plum-700)}
+
+  /* =================== RESPONSIVE =================== */
+  @media (max-width: 960px){
+    .nav{padding:28px 24px 20px}
+    .nav .links a:not(.cta){display:none}
+    .article{padding:0 24px}
+    .article-head{padding:40px 0 56px}
+    h1.thesis{font-size:64px}
+    .lede{font-size:20px}
+    section.s{padding:64px 24px}
+    h2.section-title{font-size:44px}
+    p.body{font-size:17px}
+    p.body.lead{font-size:19px}
+
+    .four-grid{grid-template-columns:1fr}
+    .compare{grid-template-columns:1fr}
+    .compare .col{border-right:none;border-bottom:1px solid var(--ink)}
+    .compare .col:last-child{border-bottom:none}
+    .funnel-row{grid-template-columns:1fr;gap:8px}
+    .funnel-arrow{padding:8px 0;transform:rotate(90deg)}
+    .engage-row{grid-template-columns:1fr 70px}
+    .engage-row .bar-wrap{grid-column:1 / -1;order:3}
+    .engage-row .name{font-size:14px}
+    .engage-row .pct{font-size:24px}
+    .journey-metrics{grid-template-columns:1fr}
+    .journey-metrics .met{border-right:none;border-bottom:1.5px solid var(--ink);padding:36px 28px}
+    .journey-metrics .met:last-child{border-bottom:none}
+    .journey-metrics .num{font-size:84px}
+    .pyramid-row{grid-template-columns:72px 1fr;gap:14px}
+    .pyramid-row .desc{display:none}
+    .pyramid-row .pct{font-size:36px}
+    .levers{grid-template-columns:1fr}
+    .principles{grid-template-columns:1fr}
+    .factors{grid-template-columns:1fr 1fr}
+
+    .dark-panel{padding:80px 24px}
+    .dark-panel h2.massive{font-size:48px}
+    .megastat{font-size:144px}
+    .megastat-label{font-size:22px}
+
+    .final-cta{padding:64px 24px}
+    .final-cta h2{font-size:40px}
+    .footer{flex-direction:column;gap:10px;text-align:center}
+  }
+  @media (max-width: 640px){
+    h1.thesis{font-size:44px}
+    h2.section-title{font-size:32px}
+    .dark-panel h2.massive{font-size:36px}
+    .megastat{font-size:96px;line-height:1}
+    .megastat-label{font-size:18px}
+    .funnel-stage h4{font-size:24px}
+    .engage-row{grid-template-columns:1fr 60px}
+    .engage-row .pct{font-size:20px}
+    .pyramid-row .bar{font-size:14px;padding:14px 16px}
+    .levers .lever .pct{font-size:64px}
+    .factors{grid-template-columns:1fr}
+    .final-cta h2{font-size:32px}
+    .evidence-card{padding:28px 22px}
+  }
+</style>
+</head>
+<body>
+
+<!-- =================== NAV =================== -->
+<nav class="nav">
+  <a href="index.html" class="logo">
+    <span class="mark">EMW</span>
+    <span>Enrollment Marketing Wizards</span>
+  </a>
+  <div class="links">
+    <a href="index.html#demo">See it in action</a>
+    <a href="methodology.html" class="active">Methodology</a>
+    <a href="index.html#about">About</a>
+    <a href="index.html#contact" class="cta">Book a call</a>
+  </div>
+</nav>
+
+<!-- =================== HERO =================== -->
+<header class="article">
+  <div class="article-head">
+    <div class="crumb">
+      <a href="index.html">Home</a><span class="sep">/</span><span class="current">Methodology</span>
+    </div>
+    <h1 class="thesis">The lead funnel is wrong.<br/><span class="accent">Most enrolled students were never leads.</span></h1>
+    <p class="lede">For decades, enrollment marketing has been built around a single mental model: lead → applicant → student. <b>The model is wrong.</b> When you connect marketing data to admissions data, you find that 80–90% of enrolled students never filled out a lead form in their lives.</p>
+    <p class="lede">This is what we found, what we now do differently, and the budget and creative principles that follow from it.</p>
+    <div class="byline">
+      <span><b>The argument</b> · 9 sections</span>
+      <span><b>Read time</b> · 8 minutes</span>
+      <span><b>Source</b> · Synthesis of 7+ years of connected marketing + admissions data</span>
+    </div>
+  </div>
+</header>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 1 — THE LANDSCAPE =================== -->
+<section class="s">
+  <div class="eyebrow">01 · The landscape</div>
+  <h2 class="section-title">Four forces are <span class="accent">compressing every enrollment pipeline.</span></h2>
+  <p class="body lead">No single tactic survives them. What survives is controlling what we can — the data we collect, the model we use to read it, and the strategy that follows.</p>
+
+  <div class="four-grid">
+    <div class="cell">
+      <div class="cell-num">01</div>
+      <h3>The enrollment cliff</h3>
+      <p>A shrinking pool of college-age students through the next decade. The math gets worse before it gets better.</p>
+    </div>
+    <div class="cell">
+      <div class="cell-num">02</div>
+      <h3>Declining international</h3>
+      <p>Visa volatility compresses a once-reliable global pipeline. Programs that depended on it are exposed.</p>
+    </div>
+    <div class="cell">
+      <div class="cell-num">03</div>
+      <h3>Value skepticism</h3>
+      <p>Public doubt about higher-ed ROI pressures every program to prove its outcomes — in dollars, in jobs, in years to break-even.</p>
+    </div>
+    <div class="cell">
+      <div class="cell-num">04</div>
+      <h3>AI &amp; career fear</h3>
+      <p>Automation anxiety is reshaping what learners want to study, and when. Programs that don't answer "will this still be a career in 10 years" get skipped.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 2 — THE QUESTION =================== -->
+<section class="s">
+  <div class="eyebrow">02 · The question most institutions can't answer</div>
+  <h2 class="section-title">Marketing and admissions <span class="accent">don't share a measurement.</span></h2>
+  <p class="body">Most marketing teams can produce platform metrics on demand. Far fewer can produce the only metric that actually matters to a CFO.</p>
+
+  <div class="compare">
+    <div class="col">
+      <div class="label">Most institutions can tell you</div>
+      <h3>Platform metrics</h3>
+      <ul>
+        <li>Cost per click</li>
+        <li>Cost per lead</li>
+        <li>Inquiry volume</li>
+        <li>Application starts</li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="label">Far fewer can answer</div>
+      <h3>The actual question</h3>
+      <p class="callout">"What is the cost per application and per enrollment — by channel, audience, and ad?"</p>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top:32px"><b>It isn't just a technology problem.</b> It's an organizational and governance challenge — connecting these systems changes how marketing and admissions teams work together, who owns which metric, and what "performance" even means.</p>
+</section>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 3 — THE TEXTBOOK FUNNEL =================== -->
+<section class="s">
+  <div class="eyebrow">03 · What everyone is doing</div>
+  <h2 class="section-title">The textbook funnel <span class="accent">that every strategy is built around.</span></h2>
+  <p class="body">A linear progression nearly every enrollment strategy assumes — and the foundation of nearly every dashboard, comp plan, and channel attribution model in the industry.</p>
+
+  <div class="funnel-row">
+    <div class="funnel-stage">
+      <div class="stage-label">Top of funnel</div>
+      <h4>Lead</h4>
+      <p>Marketing casts broad — ads, search, social, content. Anyone who raises a hand becomes a lead.</p>
+    </div>
+    <div class="funnel-arrow">→</div>
+    <div class="funnel-stage">
+      <div class="stage-label">Middle of funnel</div>
+      <h4>Applicant</h4>
+      <p>Leads are nurtured through email, retargeting, and counselor outreach until they apply.</p>
+    </div>
+    <div class="funnel-arrow">→</div>
+    <div class="funnel-stage">
+      <div class="stage-label">Bottom of funnel</div>
+      <h4>Student</h4>
+      <p>Applicants convert via acceptance, aid, and deposit.</p>
+    </div>
+  </div>
+
+  <p class="funnel-note">The model assumes every enrolled student passes through every stage. Simple, linear, measurable. It also happens to be wrong.</p>
+
+  <p class="body" style="margin-top:48px">This funnel logic produces a specific kind of artifact: <b>landing pages designed to extract a lead, not to serve a prospect.</b> Every link is a "distraction." Every piece of program detail is something to gate. Every page exists to push the form.</p>
+
+  <div class="pullquote">
+    <q>Strip the landing page bare: sparse detail, no menu, no link home, no other places to click — nothing but the form and the "submit" button. Every hyperlink is a distraction.</q>
+    <cite>— Conventional landing-page advice, repeated across the industry</cite>
+  </div>
+
+  <p class="body">It's a worldview in which marketers believe they can control what prospects want and when. The data says otherwise.</p>
+</section>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 4 — THE DISCOVERY (DARK PANEL) =================== -->
+<div class="dark-panel">
+  <div class="dark-panel-inner">
+    <div class="eyebrow">04 · The discovery</div>
+    <h2 class="massive">When we connected the data,<br/><span class="accent">the funnel collapsed.</span></h2>
+    <p>We wired together everything: campaigns, channels, conversion points, the CRM, the application system. Every touchpoint from first ad impression to enrolled student, on one record per prospect.</p>
+    <p>This is what we found.</p>
+
+    <div style="margin-top:72px">
+      <div class="megastat">80–90%</div>
+      <div class="megastat-label">of enrolled students were <b>never leads.</b> They never filled out a lead form, an RFI, or a "request more info" anywhere in the journey.</div>
+      <div class="megastat-foot">1–2% of enrollees clicked a paid ad and then submitted a lead form. The funnel is optimizing for 1–2% of where enrollment actually comes from.</div>
+    </div>
+  </div>
+</div>
+
+<!-- =================== SECTION 5 — THE REAL JOURNEY =================== -->
+<section class="s">
+  <div class="eyebrow">05 · What the data actually shows</div>
+  <h2 class="section-title">The real prospect journey is <span class="accent">long, quiet, and indirect.</span></h2>
+  <p class="body">Graduate prospects research deeply, on their own time, before they decide. They don't telegraph their intent. They consume — pages, videos, info sessions — long before anyone in admissions knows they exist.</p>
+
+  <div class="journey-metrics">
+    <div class="met">
+      <div class="num">64</div>
+      <div class="unit">pageviews</div>
+      <div class="desc">From first ad click to submitted application — average across enrolled students.</div>
+      <div class="foot">Top of range: 195 pageviews per prospect.</div>
+    </div>
+    <div class="met">
+      <div class="num">8</div>
+      <div class="unit">months</div>
+      <div class="desc">From first ad click to started application — average elapsed time.</div>
+      <div class="foot">Average: 219 days.</div>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top:40px"><b>Eight months of quiet research.</b> Sixty-four pages of self-directed evaluation. None of it shows up in the lead funnel because most of it happens before a prospect is ever willing to give you their email.</p>
+</section>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 6 — HOW PROSPECTS ENGAGE =================== -->
+<section class="s">
+  <div class="eyebrow">06 · How prospects actually engage</div>
+  <h2 class="section-title">Open many doors. <span class="accent">Let prospects pick their own.</span></h2>
+  <p class="body lead">Among enrolled students, here's the share who took each engagement action somewhere along the way:</p>
+
+  <div class="engage-bars">
+    <div class="engage-row">
+      <div class="name">Submitted a lead / RFI form</div>
+      <div class="bar-wrap"><div class="bar" style="width:10%"></div></div>
+      <div class="pct">10%</div>
+    </div>
+    <div class="engage-row">
+      <div class="name">Booked or took a phone call</div>
+      <div class="bar-wrap"><div class="bar" style="width:30%"></div></div>
+      <div class="pct">30%</div>
+    </div>
+    <div class="engage-row">
+      <div class="name">Attended a virtual info session</div>
+      <div class="bar-wrap"><div class="bar" style="width:40%"></div></div>
+      <div class="pct">40%</div>
+    </div>
+    <div class="engage-row">
+      <div class="name">Attended an open house</div>
+      <div class="bar-wrap"><div class="bar" style="width:50%"></div></div>
+      <div class="pct">50%</div>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top:32px">The lead form is the <b>least-used</b> engagement door — chosen by 1 in 10 enrollees. Campaigns that drive open-house attendance, by contrast, reach 1 in 2.</p>
+  <p class="body">The lesson is structural: prospects pick the engagement format that fits their decision style, their week, and their comfort with commitment. <b>Open many doors.</b> Most of them will not be the lead form.</p>
+</section>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 7 — STEPPING STONES MODEL =================== -->
+<section class="s">
+  <div class="eyebrow">07 · The model that replaces the funnel</div>
+  <h2 class="section-title">Not a path. <span class="accent">Stepping stones.</span></h2>
+  <p class="body lead">Prospects don't advance neatly from stone to stone. They land somewhere, leave, come back, hop sideways, disappear for three months, return after talking to an alum. Our job is to make it easy for them to find their own path through.</p>
+
+  <div class="stones-wrap">
+    <svg class="stones-svg" viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" aria-label="Stepping stones model diagram">
+      <!-- background grid hint -->
+      <defs>
+        <marker id="arrow-end" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,0 L8,4 L0,8 z" fill="#9C9C9C"/>
+        </marker>
+      </defs>
+
+      <!-- Start node -->
+      <g>
+        <rect x="20" y="135" width="120" height="90" fill="#0A0A0A"/>
+        <text x="80" y="175" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="800" font-size="16" fill="#fff">A</text>
+        <text x="80" y="195" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="800" font-size="16" fill="#fff">prospect</text>
+      </g>
+
+      <!-- Six stepping stones in a non-linear cloud -->
+      <g>
+        <!-- 1. Social ads (top-left) -->
+        <rect x="220" y="40" width="160" height="56" fill="#fff" stroke="#0A0A0A" stroke-width="1.5"/>
+        <text x="300" y="65" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#DC267F">CHANNEL</text>
+        <text x="300" y="84" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="14" fill="#0A0A0A">Social / search ads</text>
+
+        <!-- 2. Program webpage (top-mid) -->
+        <rect x="430" y="20" width="160" height="56" fill="#fff" stroke="#0A0A0A" stroke-width="1.5"/>
+        <text x="510" y="45" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#DC267F">OWNED</text>
+        <text x="510" y="64" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="14" fill="#0A0A0A">Program webpage</text>
+
+        <!-- 3. YouTube video (top-right) -->
+        <rect x="635" y="60" width="160" height="56" fill="#fff" stroke="#0A0A0A" stroke-width="1.5"/>
+        <text x="715" y="85" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#DC267F">CONTENT</text>
+        <text x="715" y="104" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="14" fill="#0A0A0A">YouTube / video</text>
+
+        <!-- 4. Info session (bottom-left) -->
+        <rect x="220" y="240" width="160" height="56" fill="#fff" stroke="#0A0A0A" stroke-width="1.5"/>
+        <text x="300" y="265" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#DC267F">EVENT</text>
+        <text x="300" y="284" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="14" fill="#0A0A0A">Info session / open house</text>
+
+        <!-- 5. Counselor (bottom-mid) -->
+        <rect x="430" y="260" width="160" height="56" fill="#fff" stroke="#0A0A0A" stroke-width="1.5"/>
+        <text x="510" y="285" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#DC267F">HUMAN</text>
+        <text x="510" y="304" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="14" fill="#0A0A0A">Counselor / director</text>
+
+        <!-- 6. Alumni (bottom-right) -->
+        <rect x="635" y="240" width="160" height="56" fill="#fff" stroke="#0A0A0A" stroke-width="1.5"/>
+        <text x="715" y="265" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="12" fill="#DC267F">SOCIAL</text>
+        <text x="715" y="284" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="14" fill="#0A0A0A">Alumni / peer</text>
+      </g>
+
+      <!-- End node -->
+      <g>
+        <rect x="800" y="135" width="80" height="90" fill="#DC267F"/>
+        <text x="840" y="170" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="900" font-size="14" fill="#fff">YES</text>
+        <text x="840" y="187" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="12" fill="#fff">they</text>
+        <text x="840" y="203" text-anchor="middle" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="12" fill="#fff">enroll</text>
+      </g>
+
+      <!-- Connecting lines: prospect → each stone (lighter) -->
+      <g stroke="#D4D4D4" stroke-width="1" fill="none">
+        <path d="M140 165 Q190 90 220 68"/>
+        <path d="M140 175 Q200 100 430 48"/>
+        <path d="M140 180 Q260 100 635 88"/>
+        <path d="M140 195 Q190 235 220 268"/>
+        <path d="M140 200 Q200 270 430 288"/>
+        <path d="M140 205 Q260 290 635 268"/>
+      </g>
+
+      <!-- Cross-stone connections (the non-linear part) -->
+      <g stroke="#F3B7D0" stroke-width="1" stroke-dasharray="3,3" fill="none">
+        <path d="M380 68 L430 48"/>
+        <path d="M590 48 L635 88"/>
+        <path d="M380 268 L430 288"/>
+        <path d="M590 288 L635 268"/>
+        <path d="M300 96 L300 240"/>
+        <path d="M510 76 L510 260"/>
+        <path d="M715 116 L715 240"/>
+      </g>
+
+      <!-- Final connections: each stone → enroll -->
+      <g stroke="#0A0A0A" stroke-width="1.2" fill="none" marker-end="url(#arrow-end)">
+        <path d="M380 68 Q650 50 800 165"/>
+        <path d="M590 48 Q720 60 800 160"/>
+        <path d="M795 88 Q800 130 800 155"/>
+        <path d="M380 268 Q650 300 800 200"/>
+        <path d="M590 288 Q720 300 800 205"/>
+        <path d="M795 268 Q800 230 800 210"/>
+      </g>
+    </svg>
+  </div>
+
+  <p class="body" style="margin-top:24px"><b>Every prospect follows their own path.</b> The job of marketing isn't to herd them through a tube. It's to make sure every stone is there, every stone has what they need, and every stone makes the next stone easy to find.</p>
+</section>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 8 — KNOW THE PROSPECT =================== -->
+<section class="s">
+  <div class="eyebrow">08 · Know the prospect</div>
+  <h2 class="section-title">Graduate prospects are <span class="accent">sophisticated buyers.</span></h2>
+  <p class="body lead">They are educated adults making expensive life decisions over weeks, months, sometimes years. The conventional wisdom of "less is more" was developed for impulse-purchase consumer goods. It does not apply here.</p>
+
+  <div class="principles">
+    <div class="principle">
+      <div class="pnum">PRINCIPLE 01</div>
+      <h3>Give them everything</h3>
+      <p>Every fact a serious buyer needs — cost, outcomes, format, curriculum, faculty, deadlines, requirements. Don't make them ask. Don't gate it behind a form. Don't save it for the call.</p>
+    </div>
+    <div class="principle">
+      <div class="pnum">PRINCIPLE 02</div>
+      <h3>Well-structured</h3>
+      <p>Organized, clearly labeled, easily navigable. Respect their time. A FAQ buried in a PDF behind a form is worse than nothing — it signals that you don't take their evaluation seriously.</p>
+    </div>
+    <div class="principle">
+      <div class="pnum">PRINCIPLE 03</div>
+      <h3>Built to be scanned</h3>
+      <p>Adult professionals scroll and scan like experts. Make answers findable in seconds, not paragraphs. Headings, anchors, tables, bullets — every page is a reference document, not a brochure.</p>
+    </div>
+  </div>
+
+  <div class="pullquote">
+    <q>The consumer is not an idiot. She is your wife.</q>
+    <cite>— David Ogilvy, <em>Confessions of an Advertising Man</em>, 1963</cite>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 9 — STORYTELLING / 5 FACTORS =================== -->
+<section class="s">
+  <div class="eyebrow">09 · What students actually evaluate</div>
+  <h2 class="section-title">Five factors. <span class="accent">Mirror them.</span></h2>
+  <p class="body">Students and parents evaluate graduate programs on a remarkably consistent set of dimensions. Storytelling across web, social, email, and PR should reflect what they're actually weighing — and what they'll honestly experience at your institution.</p>
+
+  <div class="factors">
+    <div class="factor">
+      <h4>Location</h4>
+      <p>Online flexibility, hybrid options, or a physical campus near home or work.</p>
+    </div>
+    <div class="factor">
+      <h4>Career outcomes</h4>
+      <p>ROI, job placement, salary growth, employer ties, evidence of post-grad success.</p>
+    </div>
+    <div class="factor">
+      <h4>Reputation</h4>
+      <p>Rankings, faculty achievements, alumni recognition, accreditation signals.</p>
+    </div>
+    <div class="factor">
+      <h4>Affordability</h4>
+      <p>Tuition, scholarships, aid eligibility, payment plans, total cost over time.</p>
+    </div>
+    <div class="factor">
+      <h4>Experience</h4>
+      <p>A day in the life. The vibe — on campus, in classrooms, online, in the community.</p>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top:32px"><b>Don't gate the story.</b> Share it proudly. Every one of these answers should be on the page, named with real people, and verifiable.</p>
+</section>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 10 — 60-30-10 LEVERS =================== -->
+<section class="s">
+  <div class="eyebrow">10 · Where the leverage lives</div>
+  <h2 class="section-title">Audience leads. <span class="accent">Message follows. Design serves.</span></h2>
+  <p class="body lead">Eighty years of direct-marketing testing tells us where the leverage is, and where it isn't. The 60-30-10 rule is the closest thing this industry has to a law of physics.</p>
+
+  <div class="levers">
+    <div class="lever">
+      <div class="pct">60%</div>
+      <h3>Audience</h3>
+      <p>The right audience can lift response 5×, 10×, even 25×. There is no creative trick that beats showing up in front of the right people. None.</p>
+    </div>
+    <div class="lever">
+      <div class="pct">30%</div>
+      <h3>Message</h3>
+      <p>A strong message — the right offer, framed the right way for the right audience — rarely moves results more than 2–5×. Important, second.</p>
+    </div>
+    <div class="lever">
+      <div class="pct">10%</div>
+      <h3>Design</h3>
+      <p>Design matters — visual quality, hierarchy, polish. But it's the weakest of the three levers. Beautiful creative aimed at the wrong audience converts no one.</p>
+    </div>
+  </div>
+
+  <p class="body" style="margin-top:32px">The trap of higher-ed marketing is to spend 60% of the planning conversation on creative, 30% on message, and 10% on audience. That's the rule, inverted. The best storytelling in the world won't matter if it's reaching the wrong people.</p>
+</section>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 11 — BUDGET ALLOCATION =================== -->
+<section class="s">
+  <div class="eyebrow">11 · Where the budget should go</div>
+  <h2 class="section-title">Spend furthest from the brand, <span class="accent">not closest to it.</span></h2>
+  <p class="body lead">Brand-name searches and retargeting are people who already know you. They convert beautifully, but they are not <b>new</b> demand. New demand comes from people who have never heard of your program — and the cheapest way to find them is to model them off your best current students.</p>
+
+  <div class="pyramid">
+    <div class="pyramid-row r60">
+      <div class="pct">60%</div>
+      <div class="bar">Lookalikes — modeled from best students &amp; alumni</div>
+      <div class="desc">Modeled audiences of real incremental prospects, most of whom will have never heard of you before the ad.</div>
+    </div>
+    <div class="pyramid-row r30">
+      <div class="pct">30%</div>
+      <div class="bar">Interest audiences</div>
+      <div class="desc">Program-specific interest and intent targeting. Adjacent professional fields, related credentials, career-stage signals.</div>
+    </div>
+    <div class="pyramid-row r10">
+      <div class="pct">10%</div>
+      <div class="bar">Retargeting &amp; brand</div>
+      <div class="desc">Site visitors and brand-name searchers. They convert, but they're already in the funnel.</div>
+    </div>
+  </div>
+
+  <p class="pyramid-foot">The cycle: the outer orbit feeds the inner orbit, year after year. Lookalikes become site visitors. Site visitors become applicants. Applicants become students. Students become the next generation of lookalike training data.</p>
+</section>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 12 — LANDING PAGE PATTERN =================== -->
+<section class="s">
+  <div class="eyebrow">12 · Landing pages, rebuilt</div>
+  <h2 class="section-title">Pages that <span class="accent">serve</span>, not extract.</h2>
+  <p class="body">Once you accept the stepping-stones model, landing pages stop being lead-capture mechanisms and start being what prospects actually need them to be: <b>reference pages.</b> Built for a sophisticated buyer comparing options.</p>
+
+  <div class="principles">
+    <div class="principle">
+      <div class="pnum">PATTERN 01</div>
+      <h3>Substance first</h3>
+      <p>Real program detail before any ask. Name the dean. Show the curriculum. Quote the data. The page earns the right to ask for the form by being worth reading.</p>
+    </div>
+    <div class="principle">
+      <div class="pnum">PATTERN 02</div>
+      <h3>Real people &amp; outcomes</h3>
+      <p>Named faculty. Named alumni with where they went. Faculty rankings, employment placement rates, salary data — sourced and citable. Generic stock photos and unsourced claims actively reduce trust.</p>
+    </div>
+    <div class="principle">
+      <div class="pnum">PATTERN 03</div>
+      <h3>Many ways to engage</h3>
+      <p>RFI form, info session signup, "talk to the program director," email, phone, application start. Every door on the page. Let them pick.</p>
+    </div>
+  </div>
+
+  <div class="example">
+    <div class="label">Real example from our work</div>
+    <h4>An online LL.M. landing page, post-rebuild</h4>
+    <ul>
+      <li><b>Hero video</b> with the dean speaking to camera — no overlay, no music sting, just substance</li>
+      <li><b>Named dean</b> and full bio link, above the fold</li>
+      <li><b>#22 faculty ranking</b> shown up front, with the source cited</li>
+      <li><b>Real, named alumni outcomes</b> — five graduates with current employer and role</li>
+      <li><b>Five different ways to engage</b> — RFI, session signup, counselor call, dean's office, application</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- =================== SECTION 13 — THE EVIDENCE =================== -->
+<section class="s">
+  <div class="eyebrow">13 · The evidence</div>
+  <h2 class="section-title">Leads went down. <span class="accent">Applications went up.</span></h2>
+  <p class="body lead">When we deployed this methodology across a graduate portfolio, the lead count actually <b>dropped</b> — because we stopped optimizing for it. What grew was the thing that matters.</p>
+
+  <div class="evidence-card">
+    <svg viewBox="0 0 700 280" xmlns="http://www.w3.org/2000/svg" aria-label="Leads vs applications, FY22 to FY23">
+      <!-- axes -->
+      <line x1="60" y1="220" x2="660" y2="220" stroke="#0A0A0A" stroke-width="1.5"/>
+      <line x1="60" y1="40" x2="60" y2="220" stroke="#0A0A0A" stroke-width="1.5"/>
+
+      <!-- y-axis labels -->
+      <text x="50" y="46" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#525252">100</text>
+      <text x="50" y="135" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#525252">50</text>
+      <text x="50" y="224" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="10" fill="#525252">0</text>
+
+      <!-- baseline horizontal grid -->
+      <line x1="60" y1="40" x2="660" y2="40" stroke="#E8E8E8" stroke-width="1" stroke-dasharray="2,3"/>
+      <line x1="60" y1="130" x2="660" y2="130" stroke="#E8E8E8" stroke-width="1" stroke-dasharray="2,3"/>
+
+      <!-- Bars: FY22 baseline = 100 leads, 100 apps (index) -->
+      <!-- FY22 leads -->
+      <rect x="120" y="40" width="60" height="180" fill="#9C9C9C"/>
+      <text x="150" y="240" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0A0A0A">FY22 Leads</text>
+      <text x="150" y="255" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#525252">100 (baseline)</text>
+
+      <!-- FY23 leads — down to ~75 -->
+      <rect x="200" y="85" width="60" height="135" fill="#0A0A0A"/>
+      <text x="230" y="240" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0A0A0A">FY23 Leads</text>
+      <text x="230" y="255" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#DC2626">−25%</text>
+
+      <!-- spacer -->
+      <line x1="320" y1="40" x2="320" y2="220" stroke="#E8E8E8" stroke-width="1"/>
+
+      <!-- FY22 applications -->
+      <rect x="380" y="40" width="60" height="180" fill="#9C9C9C"/>
+      <text x="410" y="240" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0A0A0A">FY22 Apps</text>
+      <text x="410" y="255" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#525252">100 (baseline)</text>
+
+      <!-- FY23 applications — up to ~118 -->
+      <rect x="460" y="8" width="60" height="212" fill="#DC267F"/>
+      <text x="490" y="240" text-anchor="middle" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0A0A0A">FY23 Apps</text>
+      <text x="490" y="255" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#16A34A">+18%</text>
+
+      <!-- annotation -->
+      <text x="585" y="50" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="13" fill="#0A0A0A">Apps grew</text>
+      <text x="585" y="68" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="13" fill="#0A0A0A">while leads</text>
+      <text x="585" y="86" font-family="Hanken Grotesk, sans-serif" font-weight="700" font-size="13" fill="#0A0A0A">fell.</text>
+    </svg>
+
+    <p class="evidence-takeaway">Lead count was never the thing driving enrollment. <span class="accent">Information-rich, audience-first campaigns were.</span></p>
+  </div>
+
+  <p class="body" style="margin-top:32px">This isn't a one-off result. It's the predictable consequence of what the data shows: when you stop optimizing for an artifact that 80–90% of enrolled students never produce, and start serving the prospects who are doing the real research, application volume follows. The lead form becomes one door of many — not the goal.</p>
+</section>
+
+<!-- =================== FINAL CTA =================== -->
+<div class="final-cta">
+  <div class="final-cta-inner">
+    <h2>This is how we think about <span class="accent">enrollment marketing.</span></h2>
+    <p>If you want a dashboard that measures this way — that connects ad spend to enrolled students, surfaces the non-lead paths, and shows leadership the cost per enrollment by channel, audience, and ad — that's what we build.</p>
+    <a href="index.html#contact" class="btn">Book a 30-min call →</a>
+    <div class="subnote">Or scroll the live dashboard prototype on the home page.</div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div>© 2026 Enrollment Marketing Wizards</div>
+  <div class="links">
+    <a href="index.html">Home</a>
+    <a href="index.html#demo">Demo</a>
+    <a href="mailto:hello@enrollmentmarketingwizards.com">Email</a>
+  </div>
+</footer>
+
+</body>
+</html>
