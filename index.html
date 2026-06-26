@@ -189,8 +189,9 @@
     display:block;width:max-content;max-width:100%;margin:0 auto 14px;
     font-family:var(--font-mono);font-size:11px;letter-spacing:.16em;color:#fff;
     background:var(--plum-600);padding:8px 18px;font-weight:700;
-    text-align:center;
+    text-align:center;text-transform:uppercase;
   }
+  .demo-tag-detail{display:inline}
   @keyframes tag-pulse{
     0%,100%{opacity:1}
     50%{opacity:.75}
@@ -464,6 +465,7 @@
     .sticky-cta-text{flex:1 1 auto;min-width:0}
     .sticky-cta-btn{padding:10px 14px;font-size:13px}
     .demo-tag{font-size:10px;padding:6px 14px;letter-spacing:.14em}
+    .demo-tag-detail{display:none}
   }
 
 
@@ -884,48 +886,47 @@
 
   /* PHONE: ≤ 640px */
   @media (max-width: 640px){
-    .shell{padding:12px 10px 28px}
+    .shell{padding:12px 10px 28px;overflow-x:hidden}
 
-    /* App bar — stack vertically, give actions full-width row */
-    .appbar{padding:4px 4px 12px;flex-direction:column;align-items:stretch;gap:10px}
-    .appbar .crumb{flex-wrap:wrap;gap:8px;font-size:13px}
-    .crumb .title{font-size:15px;line-height:1.2}
+    /* App bar — tighter, less wasted space */
+    .appbar{padding:4px 4px 10px;flex-direction:column;align-items:stretch;gap:8px}
+    .appbar .crumb{flex-wrap:wrap;gap:8px;font-size:13px;min-width:0}
+    .crumb .title{font-size:15px;line-height:1.2;min-width:0;overflow:hidden;text-overflow:ellipsis}
     .crumb .page{font-size:13px}
     .crumb .sep{display:none}  /* breadcrumb arrow looks cramped on phone */
     .appbar .mark{width:32px;height:32px;font-size:15px;border-radius:2px}
     .appbar .actions{justify-content:flex-end}
     .appbar .actions .btn{padding:10px 14px;font-size:13px;min-height:40px}  /* AA touch target */
 
-    /* Hide vertical page rail; use a horizontal tab bar at the bottom of the appbar instead */
-    .layout{grid-template-columns:1fr;gap:10px}
-    .pagerail{
-      flex-direction:row;justify-content:center;gap:6px;padding-top:0;margin-bottom:6px;
-    }
-    .pagerail button{
-      width:auto;height:40px;min-width:44px;padding:0 16px;font-size:13px;
-      border-radius:999px;
-    }
-    .pagerail button::after{
-      content:" / page";text-transform:lowercase;letter-spacing:0;font-family:"Inter",sans-serif;font-weight:500;opacity:.7;
-    }
+    /* HIDE the page rail entirely on mobile — there are only 2 pages and the
+       pills were rendering near-invisibly (white text on cream), creating
+       the appearance of a large empty gap. Removed to declutter. */
+    .layout{grid-template-columns:1fr;gap:8px}
+    .pagerail{display:none}
 
-    .banner{font-size:12px;padding:8px 12px;line-height:1.45}
-    /* Shorter banner copy via :first-letter approach? No — keep banner readable */
+    /* Banner: stack the label above the message instead of side-by-side flex,
+       which was forcing the message into a narrow right column with bad wrapping */
+    .banner{display:block;font-size:12px;padding:10px 14px;line-height:1.5}
+    .banner b{display:inline}
 
     /* Topbar elements */
-    .brand .torch{width:36px;height:36px;font-size:12px}
+    .topbar{padding:12px;grid-template-columns:1fr;gap:10px}
+    .brand{min-width:0}
+    .brand .torch{width:36px;height:36px;font-size:13px;flex-shrink:0}
+    .brand .lockup{min-width:0;overflow:hidden}
     .brand .lockup .nyu{font-size:18px}
-    .brand .lockup .sub{font-size:10px}
-    .dateblock{padding:8px 10px;gap:6px;flex-wrap:wrap}
-    .dateblock .sel{padding:6px 8px;min-height:40px;justify-content:center}
+    .brand .lockup .sub{font-size:10px;white-space:normal;line-height:1.3}
+    .dateblock{padding:8px 10px;gap:6px;flex-wrap:wrap;min-width:0}
+    .dateblock .sel{padding:6px 8px;min-height:40px;justify-content:center;min-width:0;flex:1 1 auto}
     .dateblock .sel .lbl{font-size:10px}
-    .dateblock .sel .val{font-size:12px}
-    .dateblock .or{font-size:10px}
+    .dateblock .sel .val{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .dateblock .or{font-size:10px;flex-shrink:0}
 
     /* Filters: single column, full-width dropdown menus that escape their parent */
     .filtergrid{grid-template-columns:1fr;gap:10px}
     .ddl{min-width:0;width:100%;padding:10px 14px;min-height:44px}
-    .ddl .lbl-text .sum{font-size:13px}
+    .ddl .lbl-text{min-width:0}
+    .ddl .lbl-text .sum{font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     /* Drop menu becomes a viewport-anchored sheet for easier touch interaction */
     .ddl .ddlmenu{
       position:fixed;
@@ -981,13 +982,21 @@
     .kpiframe{padding:14px 12px 12px}
     .kpiframe-head{margin-bottom:10px}
     .kpiframe-head .eyebrow-meta{display:none}
-    .kpi{padding:11px 14px;gap:8px;min-height:54px}
-    .kpi .k{font-size:10px;letter-spacing:.1em}
-    .kpi .v{font-size:22px}
-    .kpi.primary .v{font-size:26px}
+    /* Switch from flex-column with shared-height tiles to a plain block layout
+       so each tile sizes to its content. The flex behavior was causing tiles
+       to be forced too short (~54px) and values were bleeding into next card. */
+    .kpis{display:block;min-height:auto}
+    .kpi{
+      display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;
+      padding:14px 16px;min-height:auto;margin-bottom:6px;border-radius:2px;
+      overflow:hidden;  /* belt-and-suspenders: no descender overflow */
+    }
+    .kpi:last-child{margin-bottom:0}
+    .kpi .k{font-size:11px;letter-spacing:.1em}
+    .kpi .v{font-size:24px;line-height:1.05}
+    .kpi.primary .v{font-size:28px}
     .kpi .delta{font-size:11px}
     .kpi .delta .label{font-size:9px}
-    .kpis{min-height:auto;gap:6px}
 
     /* Charts — smaller min-heights, larger axis fonts */
     .dimchart{min-height:340px;padding:14px}
@@ -1103,7 +1112,7 @@
   </div>
 
   <section class="prototype" id="demo">
-    <div class="demo-tag">LIVE INTERACTIVE PROTOTYPE — ALL CONTROLS WORK</div>
+    <div class="demo-tag">Live interactive prototype<span class="demo-tag-detail"> — all controls work</span></div>
 <div class="shell">
 
   <div class="appbar">
