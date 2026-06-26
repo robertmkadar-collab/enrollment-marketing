@@ -168,6 +168,18 @@
   .btn-secondary:hover{background:var(--plum-700);color:#fff}
 
   /* =================== EMBEDDED INTERACTIVE DASHBOARD =================== */
+  /* Outer dashboard container — sits inside the hero (which has horizontal padding)
+     and gives the inlined dashboard a defined surface to render onto.
+     At mobile widths the dashboard breaks OUT of the hero's horizontal padding
+     so its interior layout gets the full viewport width (charts, KPIs, tables
+     all need every pixel on a phone). */
+  .prototype{
+    position:relative;
+    /* Editorial frame visible at desktop; removed at mobile (see media queries) */
+    border:1px solid var(--ink);
+    /* Prevent any dashboard child from creating horizontal page scroll */
+    overflow-x:hidden;
+  }
   .demo-shell{
     position:relative;background:#fff;border:2px solid var(--ink);overflow:hidden;
   }
@@ -423,6 +435,12 @@
     .final-cta{padding:64px 28px}
     .final-cta h2{font-size:44px}
     .nav .links a:not(.cta){display:none}
+    /* Dashboard breaks out of the hero's horizontal padding so its interior
+       layout gets the full viewport width on tablets/phones. */
+    .prototype{
+      margin-left:-24px;margin-right:-24px;
+      border-left:none;border-right:none;
+    }
   }
   @media (max-width: 640px){
     .hero h1{font-size:40px}
