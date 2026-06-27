@@ -93,6 +93,19 @@
     transition:background .15s;
   }
   .nav .links a.cta:hover{background:var(--plum-700);color:#fff}
+  /* Hamburger toggle — hidden on desktop, revealed at <=960px */
+  .nav-toggle{
+    display:none;flex-direction:column;justify-content:center;gap:5px;
+    width:46px;height:46px;padding:0;background:#fff;border:1.5px solid var(--ink);
+    cursor:pointer;flex:0 0 auto;
+  }
+  .nav-toggle .nav-toggle-bar{
+    display:block;width:20px;height:2px;background:var(--ink);margin:0 auto;
+    transition:transform .2s ease,opacity .2s ease;
+  }
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(2){opacity:0}
+  .nav-toggle[aria-expanded="true"] .nav-toggle-bar:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
   /* =================== ARTICLE LAYOUT =================== */
   .article{
@@ -508,7 +521,16 @@
   /* =================== RESPONSIVE =================== */
   @media (max-width: 960px){
     .nav{padding:28px 24px 20px}
-    .nav .links a:not(.cta){display:none}
+    .nav{flex-wrap:wrap}
+    .nav-toggle{display:flex}
+    .nav .links{
+      flex-basis:100%;order:3;flex-direction:column;align-items:stretch;gap:0;
+      display:none;margin-top:18px;border-top:1px solid var(--line);
+    }
+    .nav .links.open{display:flex}
+    .nav .links a{font-size:17px;padding:16px 2px;border-bottom:1px solid var(--line);width:100%}
+    .nav .links a.active{border-bottom:1px solid var(--line);padding-bottom:16px}
+    .nav .links a.cta{margin-top:16px;text-align:center;border-bottom:none;padding:16px 22px}
     .article{padding:0 24px}
     .article-head{padding:40px 0 56px}
     h1.thesis{font-size:64px}
@@ -573,7 +595,12 @@
     <span class="mark">EMW</span>
     <span>Enrollment Marketing Wizards</span>
   </a>
-  <div class="links">
+  <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bar"></span>
+  </button>
+  <div class="links" id="nav-links">
     <a href="index.html#demo">See it in action</a>
     <a href="methodology.html" class="active">Methodology</a>
     <a href="index.html#about">About</a>
@@ -1089,5 +1116,16 @@
   </div>
 </footer>
 
+<script>
+(function(){
+  var t=document.getElementById('nav-toggle'),l=document.getElementById('nav-links');
+  if(!t||!l)return;
+  function set(open){t.setAttribute('aria-expanded',open?'true':'false');t.setAttribute('aria-label',open?'Close menu':'Open menu');}
+  function close(){l.classList.remove('open');set(false);}
+  t.addEventListener('click',function(){set(l.classList.toggle('open'));});
+  l.addEventListener('click',function(e){if(e.target.closest('a'))close();});
+  window.addEventListener('resize',function(){if(window.innerWidth>960)close();});
+})();
+</script>
 </body>
 </html>
