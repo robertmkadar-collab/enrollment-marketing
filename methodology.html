@@ -424,6 +424,46 @@
     font-weight:500;
   }
 
+  /* =================== "GO NAKED" CALLOUT =================== */
+  .gonaked{
+    position:relative;overflow:hidden;
+    background:var(--plum-700);color:#fff;
+    padding:56px 64px 48px;margin:44px 0;
+  }
+  .gonaked .gn-mark{
+    position:absolute;top:-44px;right:28px;
+    font-family:var(--font-display);font-weight:900;font-size:240px;line-height:1;
+    color:#fff;opacity:.14;pointer-events:none;user-select:none;
+  }
+  .gonaked .gn-eyebrow{
+    position:relative;z-index:1;
+    font-family:var(--font-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;
+    font-weight:700;color:#fff;opacity:.9;margin:0 0 18px;
+  }
+  .gonaked .gn-quote{
+    position:relative;z-index:1;
+    font-family:var(--font-display);font-style:italic;font-weight:900;
+    font-size:100px;line-height:.9;letter-spacing:-.045em;color:#fff;
+    margin:0 0 28px;
+  }
+  .gonaked .gn-body{
+    position:relative;z-index:1;
+    font-family:var(--font-body);font-size:20px;line-height:1.55;color:#fff;
+    max-width:640px;margin:0;font-weight:400;
+  }
+  .gonaked .gn-body b{font-weight:700;color:#fff}
+  .gonaked .gn-cite{
+    position:relative;z-index:1;
+    font-family:var(--font-body);font-size:14px;color:#fff;opacity:.85;font-weight:500;
+    display:block;margin-top:26px;padding-top:18px;border-top:1px solid rgba(255,255,255,.32);
+  }
+  @media (max-width:680px){
+    .gonaked{padding:40px 26px 32px}
+    .gonaked .gn-quote{font-size:60px}
+    .gonaked .gn-mark{font-size:150px;top:-22px;right:10px}
+    .gonaked .gn-body{font-size:18px}
+  }
+
   /* =================== EXAMPLE LIST =================== */
   .example{
     margin-top:24px;background:#fff;border:2px solid var(--plum-700);padding:32px;
@@ -728,11 +768,14 @@
 
   <p class="funnel-note">The model assumes every enrolled student passes through every stage. Simple, linear, measurable. It also happens to be wrong.</p>
 
-  <p class="body" style="margin-top:48px">This funnel logic produces a specific kind of artifact: <b>landing pages designed to extract a lead, not to serve a prospect.</b> Every link is a "distraction." Every piece of program detail is something to gate. Every page exists to push the form.</p>
+  <p class="body" style="margin-top:48px">This funnel logic produces a specific kind of output: <b>landing pages designed to extract a lead, not to serve a prospect.</b> Every link is a "distraction." Every piece of program detail is something to gate. Every page exists to push the form.</p>
 
-  <div class="pullquote">
-    <q>Strip the landing page bare: sparse detail, no menu, no link home, no other places to click — nothing but the form and the "submit" button. Every hyperlink is a distraction.</q>
-    <cite>— Conventional landing-page advice, repeated across the industry</cite>
+  <div class="gonaked">
+    <div class="gn-mark" aria-hidden="true">&#8221;</div>
+    <div class="gn-eyebrow">HubSpot's landing-page advice</div>
+    <p class="gn-quote">"Go naked."</p>
+    <p class="gn-body">The prescription, reduced to two words. Take the page down to a single form and one button &mdash; <b>no navigation, no links back to the site, no program detail.</b> Anything a prospect might click instead of converting is treated as a leak to be sealed.</p>
+    <span class="gn-cite">HubSpot &mdash; "7 Habits of a Highly Effective Landing Page"</span>
   </div>
 
   <figure class="evidence-figure">
@@ -1115,7 +1158,7 @@
     <p class="evidence-takeaway">Lead count was never the thing driving enrollment. <span class="accent">Information-rich, audience-first campaigns were.</span></p>
   </div>
 
-  <p class="body" style="margin-top:32px">This isn't a one-off result. It's the predictable consequence of what the data shows: when you stop optimizing for an artifact that 80–90% of enrolled students never produce, and start serving the prospects who are doing the real research, application volume follows. The lead form becomes one door of many — not the goal.</p>
+  <p class="body" style="margin-top:32px">This isn't a one-off result. It's the predictable consequence of what the data shows: when you stop optimizing for a signal that 80–90% of enrolled students never produce, and start serving the prospects who are doing the real research, application volume follows. The lead form becomes one door of many — not the goal.</p>
 </section>
 
 <!-- =================== FINAL CTA =================== -->
