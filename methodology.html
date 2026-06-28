@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Methodology — Enrollment Growth Marketers</title>
+<title>The Methodology — EDU Growth Marketers</title>
 <meta name="description" content="Why the lead funnel doesn't match reality, and what to do instead. A data-backed enrollment marketing methodology for graduate programs.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -95,9 +95,13 @@
   .nav .links a.cta:hover{background:var(--plum-700);color:#fff}
   /* Hamburger toggle — hidden on desktop, revealed at <=960px */
   .nav-toggle{
-    display:none;flex-direction:column;justify-content:center;gap:5px;
-    width:46px;height:46px;padding:0;background:#fff;border:1.5px solid var(--ink);
+    display:none;flex-direction:row;align-items:center;gap:9px;
+    width:auto;height:46px;padding:0 14px 0 12px;background:#fff;border:1.5px solid var(--ink);
     cursor:pointer;flex:0 0 auto;
+  }
+  .nav-toggle-bars{display:flex;flex-direction:column;justify-content:center;gap:5px}
+  .nav-toggle-label{
+    font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--ink);line-height:1;
   }
   .nav-toggle .nav-toggle-bar{
     display:block;width:20px;height:2px;background:var(--ink);margin:0 auto;
@@ -676,12 +680,15 @@
 <nav class="nav">
   <a href="index.html" class="logo">
     <span class="mark">EGM</span>
-    <span>Enrollment Growth Marketers</span>
+    <span>EDU Growth Marketers</span>
   </a>
   <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-    <span class="nav-toggle-bar"></span>
-    <span class="nav-toggle-bar"></span>
-    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bars">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </span>
+    <span class="nav-toggle-label">Menu</span>
   </button>
   <div class="links" id="nav-links">
     <a href="index.html#demo">See it in action</a>
@@ -1253,7 +1260,7 @@
 </div>
 
 <footer class="footer">
-  <div>© 2026 Enrollment Growth Marketers</div>
+  <div>© 2026 EDU Growth Marketers</div>
   <div class="links">
     <a href="index.html">Home</a>
     <a href="index.html#demo">Demo</a>
