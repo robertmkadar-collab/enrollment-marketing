@@ -116,9 +116,13 @@
   .nav .links a.cta:hover{background:var(--plum-700);color:#fff}
   /* Hamburger toggle — hidden on desktop, revealed at <=960px */
   .nav-toggle{
-    display:none;flex-direction:column;justify-content:center;gap:5px;
-    width:46px;height:46px;padding:0;background:#fff;border:1.5px solid var(--ink);
+    display:none;flex-direction:row;align-items:center;gap:9px;
+    width:auto;height:46px;padding:0 14px 0 12px;background:#fff;border:1.5px solid var(--ink);
     cursor:pointer;flex:0 0 auto;
+  }
+  .nav-toggle-bars{display:flex;flex-direction:column;justify-content:center;gap:5px}
+  .nav-toggle-label{
+    font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:-.01em;color:var(--ink);line-height:1;
   }
   .nav-toggle .nav-toggle-bar{
     display:block;width:20px;height:2px;background:var(--ink);margin:0 auto;
@@ -1106,9 +1110,12 @@
     <span>EDU Growth Marketers</span>
   </a>
   <button class="nav-toggle" id="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
-    <span class="nav-toggle-bar"></span>
-    <span class="nav-toggle-bar"></span>
-    <span class="nav-toggle-bar"></span>
+    <span class="nav-toggle-bars">
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+    </span>
+    <span class="nav-toggle-label">Menu</span>
   </button>
   <div class="links" id="nav-links">
     <a href="#demo">See it in action</a>
@@ -1561,7 +1568,7 @@
 <section class="section" id="about">
   <div class="section-head">
     <div class="eyebrow">Who's building this</div>
-    <h2>20 years of <span class="smoky">proving ROI to enrollment leadership.</span></h2>
+    <h2>20 years of <span class="smoky">proving ROI to leadership.</span></h2>
   </div>
 
   <div class="cred-grid">
@@ -1579,7 +1586,7 @@
       </dl>
     </div>
     <div class="cred-bio">
-      <p>The dashboards we build aren't templates. They reflect <b>how your specific school routes leads, what your specific Slate fields are called, and which programs in your specific portfolio compete for the same applicant.</b></p>
+      <p>The dashboards we build aren't templates. They reflect <b>how your specific school routes leads, what your specific CRM fields are called, and which programs in your specific portfolio compete for the same applicant.</b></p>
       <p>We've shipped the Slate-to-BigQuery pipelines. We've reconciled Meta's iOS 17 conversion gaps against admissions deposit data. We've sat in the meeting where a CFO asks "so what's our actual CPA?" and watched marketers fumble the answer because their dashboard reports platform conversions, not enrollments.</p>
       <p>That's the problem we solve. The pretty dashboard is just the proof.</p>
       <div class="hero-cta" style="margin-top:28px;justify-content:flex-start">
