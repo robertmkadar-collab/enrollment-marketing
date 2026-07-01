@@ -1098,6 +1098,101 @@
 }
 
 @keyframes fadein{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+
+  /* =================== DASHBOARD AI ASSISTANT (prototype) =================== */
+  /* Floating, bottom-right, collapsible. Visible only while the dashboard
+     (#demo) is on screen, so it reads as "sitting on" the dashboard. All
+     answers are computed live from the current filter STATE. */
+  .prototype .da-root{
+    position:fixed;right:24px;bottom:24px;z-index:60;font-family:var(--font-body);
+    opacity:0;transform:translateY(10px);pointer-events:none;
+    transition:opacity .3s ease,transform .3s ease;
+  }
+  .prototype .da-root.in-view{opacity:1;transform:none;pointer-events:auto}
+
+  /* Launcher pill */
+  .prototype .da-launch{
+    display:inline-flex;align-items:center;gap:9px;cursor:pointer;
+    background:var(--ink);color:#fff;border:1px solid var(--ink);
+    padding:11px 17px 11px 14px;border-radius:999px;font:inherit;font-size:14px;
+    font-weight:600;letter-spacing:-.01em;box-shadow:0 6px 22px rgba(10,10,10,.18);
+    transition:background .15s,border-color .15s,transform .15s;
+  }
+  .prototype .da-launch:hover{background:var(--violet-700);border-color:var(--violet-700);transform:translateY(-1px)}
+  .prototype .da-launch-ic{color:var(--violet-500);font-size:15px;line-height:1}
+  .prototype .da-launch:hover .da-launch-ic{color:#fff}
+  .prototype .da-root.open .da-launch{display:none}
+
+  /* Panel */
+  .prototype .da-panel{
+    display:none;flex-direction:column;width:372px;max-width:calc(100vw - 24px);
+    height:544px;max-height:calc(100vh - 120px);background:var(--card);
+    border:1px solid var(--line-2);border-top:3px solid var(--violet-700);
+    box-shadow:0 18px 50px rgba(10,10,10,.22);overflow:hidden;
+  }
+  .prototype .da-root.open .da-panel{display:flex}
+
+  .prototype .da-head{display:flex;align-items:center;justify-content:space-between;padding:13px 14px;border-bottom:1px solid var(--line)}
+  .prototype .da-head-l{display:flex;align-items:center;gap:10px}
+  .prototype .da-avatar{width:30px;height:30px;display:grid;place-items:center;background:var(--violet-700);color:#fff;font-size:15px;flex-shrink:0}
+  .prototype .da-title{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--ink);letter-spacing:-.01em;line-height:1.15}
+  .prototype .da-sub{font-size:11.5px;color:var(--ink-3);line-height:1.2;margin-top:1px}
+  .prototype .da-proto{color:var(--violet-700);font-weight:700;text-transform:uppercase;letter-spacing:.09em;font-size:9.5px}
+  .prototype .da-x{border:none;background:none;color:var(--ink-3);font-size:15px;cursor:pointer;padding:4px;line-height:1}
+  .prototype .da-x:hover{color:var(--ink)}
+
+  .prototype .da-body{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:11px}
+  .prototype .da-msg{display:flex}
+  .prototype .da-msg.da-user{justify-content:flex-end}
+  .prototype .da-bubble{max-width:89%;font-size:13.5px;line-height:1.5;color:var(--ink-2);background:var(--violet-050);border:1px solid var(--violet-100);padding:10px 12px}
+  .prototype .da-user .da-bubble{background:var(--ink);border-color:var(--ink);color:#fff;max-width:82%}
+  .prototype .da-bubble p{margin:0 0 7px}
+  .prototype .da-bubble p:last-child{margin-bottom:0}
+  .prototype .da-bubble b{color:var(--violet-700);font-weight:700}
+  .prototype .da-user .da-bubble b{color:#fff}
+  .prototype .da-bubble em{font-style:normal;color:var(--ink-3)}
+
+  .prototype .da-h{font-family:var(--font-display);font-size:10.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--ink-3);margin:9px 0 4px!important}
+  .prototype .da-rank{list-style:none;margin:0 0 4px;padding:0;display:flex;flex-direction:column;gap:5px}
+  .prototype .da-rank li{font-size:13px;padding-left:13px;position:relative;color:var(--ink-2)}
+  .prototype .da-rank li::before{content:"";position:absolute;left:0;top:7px;width:5px;height:5px}
+  .prototype .da-rank.good li::before{background:var(--good)}
+  .prototype .da-rank.bad li::before{background:var(--bad)}
+  .prototype .da-mut{color:var(--ink-3);font-size:11.5px}
+  .prototype .da-stats{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .prototype .da-stats li{font-size:13px;color:var(--ink-2)}
+  .prototype .da-delta{font-size:11px;font-weight:700;white-space:nowrap}
+  .prototype .da-delta.up{color:var(--good)}
+  .prototype .da-delta.down{color:var(--bad)}
+  .prototype .da-take{color:var(--ink-3);font-size:12.5px;border-left:2px solid var(--violet-200);padding-left:9px;margin-top:8px}
+  .prototype .da-quote{font-family:var(--font-serif);font-size:13px;line-height:1.55;color:var(--ink);background:#fff;border:1px solid var(--line);padding:10px 12px}
+
+  .prototype .da-chips{display:flex;flex-wrap:wrap;gap:7px}
+  .prototype .da-chip{font:inherit;font-size:12.5px;font-weight:500;color:var(--ink-2);background:#fff;border:1px solid var(--line-2);padding:7px 11px;cursor:pointer;text-align:left;transition:all .13s;border-radius:999px}
+  .prototype .da-chip:hover{border-color:var(--violet-700);color:var(--violet-700);background:var(--violet-050)}
+  .prototype .da-act{margin-top:8px}
+  .prototype .da-actbtn{font:inherit;font-size:12.5px;font-weight:600;color:#fff;background:var(--violet-700);border:1px solid var(--violet-700);padding:7px 12px;cursor:pointer;transition:background .13s}
+  .prototype .da-actbtn:hover{background:var(--violet-800)}
+  .prototype .da-actbtn:disabled{background:var(--good);border-color:var(--good);cursor:default}
+
+  .prototype .da-typing{display:flex;gap:4px;padding:3px 2px}
+  .prototype .da-typing span{width:6px;height:6px;border-radius:50%;background:var(--violet-500);animation:daBlink 1s infinite}
+  .prototype .da-typing span:nth-child(2){animation-delay:.18s}
+  .prototype .da-typing span:nth-child(3){animation-delay:.36s}
+  @keyframes daBlink{0%,100%{opacity:.3}50%{opacity:1}}
+
+  .prototype .da-input{display:flex;gap:8px;padding:11px;border-top:1px solid var(--line);background:#fff}
+  .prototype .da-input input{flex:1;font:inherit;font-size:13.5px;border:1px solid var(--line-2);padding:9px 11px;color:var(--ink);outline:none;border-radius:0;min-width:0}
+  .prototype .da-input input:focus{border-color:var(--violet-700)}
+  .prototype .da-input button{border:1px solid var(--ink);background:var(--ink);color:#fff;width:42px;flex-shrink:0;cursor:pointer;font-size:16px;transition:background .13s,border-color .13s}
+  .prototype .da-input button:hover{background:var(--violet-700);border-color:var(--violet-700)}
+
+  @media (max-width:640px){
+    .prototype .da-root{right:12px;bottom:12px;left:12px}
+    .prototype .da-launch{width:100%;justify-content:center}
+    .prototype .da-panel{width:100%;height:72vh;max-height:72vh}
+  }
+
   /* =================== END INLINED DASHBOARD CSS =================== */
 </style>
 </head>
@@ -1521,6 +1616,39 @@
   <div class="footer">
     <span>YOUR UNIVERSITY · MARKETING ANALYTICS · PROTOTYPE</span>
     <span>DATA LAST UPDATED 5/24/2026 6:13:31 PM &nbsp; · &nbsp; PRIVACY POLICY</span>
+  </div>
+
+
+  <!-- ================= DASHBOARD AI ASSISTANT (prototype) ================= -->
+  <div class="da-root" id="da-root">
+    <button class="da-launch" id="da-launch" aria-expanded="false" aria-label="Open dashboard assistant">
+      <span class="da-launch-ic">✦</span>
+      <span class="da-launch-tx">Ask about this data</span>
+    </button>
+    <div class="da-panel" id="da-panel" role="dialog" aria-label="Dashboard assistant">
+      <div class="da-head">
+        <div class="da-head-l">
+          <span class="da-avatar">✦</span>
+          <div>
+            <div class="da-title">Dashboard Assistant</div>
+            <div class="da-sub">Reads your current filters · <span class="da-proto">prototype</span></div>
+          </div>
+        </div>
+        <button class="da-x" id="da-x" aria-label="Close assistant">✕</button>
+      </div>
+      <div class="da-body" id="da-body">
+        <div class="da-msg da-bot">
+          <div class="da-bubble">
+            <p>I read whatever slice of the dashboard you're looking at and turn it into an answer. Change a filter above and my numbers change with it. Try one:</p>
+          </div>
+        </div>
+        <div class="da-chips" id="da-chips"></div>
+      </div>
+      <div class="da-input">
+        <input type="text" id="da-text" placeholder="Ask about programs, platforms, spend…" autocomplete="off" />
+        <button id="da-send" aria-label="Send">→</button>
+      </div>
+    </div>
   </div>
 
 </div>
@@ -2912,6 +3040,207 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 180);
   });
 });
+
+/* =================== DASHBOARD AI ASSISTANT (prototype) ===================
+   Scripted, deployable (no network / no API key). Every answer is computed
+   live from the dashboard's own STATE + data helpers (filteredFacts, totals,
+   derive, aggregate), so changing a filter changes the answer. =========== */
+(function(){
+  var root = document.getElementById('da-root');
+  if(!root) return;
+  var launch = document.getElementById('da-launch'),
+      panel  = document.getElementById('da-panel'),
+      xBtn   = document.getElementById('da-x'),
+      body   = document.getElementById('da-body'),
+      chipsWrap = document.getElementById('da-chips'),
+      input  = document.getElementById('da-text'),
+      send   = document.getElementById('da-send');
+
+  /* ---- small helpers over the dashboard's global data model ---- */
+  function progName(c){ var p = PROGRAMS.find(function(x){return x.code===c;}); return p?p.name:c; }
+  function platName(c){ var p = PLATFORMS.find(function(x){return x.code===c;}); return p?p.name:c; }
+  function byDim(keyFn){
+    var m = aggregate(filteredFacts(), keyFn), out = [];
+    m.forEach(function(t, code){ out.push(Object.assign({code:code}, derive(t))); });
+    return out;
+  }
+  function ctxLine(){
+    var np = STATE.program.size, npl = STATE.platform.size;
+    return np + ' program' + (np!==1?'s':'') + ' · ' + npl + ' platform' + (npl!==1?'s':'') + ' · FY ' + STATE.fy;
+  }
+  function deltaTag(cur, prev, lowerBetter){
+    if(!isFinite(prev) || prev === 0) return '';
+    var pct = (cur - prev) / prev * 100;
+    var good = lowerBetter ? pct < 0 : pct > 0;
+    return ' <span class="da-delta ' + (good?'up':'down') + '">' + (pct>=0?'+':'') + pct.toFixed(0) + '% YoY</span>';
+  }
+
+  /* ---- answer builders (return string OR {html, action}) ---- */
+  function ansSummary(){
+    var d = derive(totals(filteredFacts()));
+    var p = derive(totals(priorYearFacts()));
+    return '<p>Current view — <em>' + ctxLine() + '</em>:</p>'
+      + '<ul class="da-stats">'
+      + '<li>Spend <b>' + fmt$(d.spend) + '</b>' + deltaTag(d.spend, p.spend, false) + '</li>'
+      + '<li>Leads <b>' + fmtN(d.leads) + '</b> · CPL <b>' + fmt$(d.cpl) + '</b>' + deltaTag(d.cpl, p.cpl, true) + '</li>'
+      + '<li>Applications <b>' + fmtN(d.apps) + '</b> · CPA <b>' + fmt$(d.cpa) + '</b>' + deltaTag(d.cpa, p.cpa, true) + '</li>'
+      + '<li>Deposits <b>' + fmtN(d.deposits) + '</b> · CPD <b>' + fmt$(d.cpd) + '</b>' + deltaTag(d.cpd, p.cpd, true) + '</li>'
+      + '</ul>'
+      + '<p class="da-take">The number leadership actually cares about is at the bottom: <b>' + fmtN(d.deposits) + ' deposits</b> at <b>' + fmt$(d.cpd) + '</b> each. Everything above it is just how you got there.</p>';
+  }
+  function ansBestDeposits(){
+    var arr = byDim(function(r){return r.program;}).filter(function(x){return x.deposits>0;});
+    if(!arr.length) return '<p>No deposits in this slice yet — widen the filters above and ask again.</p>';
+    arr.sort(function(a,b){return a.cpd-b.cpd;});
+    var best = arr.slice(0,3), worst = arr.slice(-2).reverse();
+    var li = function(x){ return '<li><b>' + progName(x.code) + '</b> — ' + fmt$(x.cpd) + '/deposit <span class="da-mut">(' + fmtN(x.deposits) + ' dep · ' + fmt$(x.spend) + ' spend)</span></li>'; };
+    return '<p>Ranked by <b>cost per deposit</b> — the metric that actually ties ad spend to an enrolled student.</p>'
+      + '<p class="da-h">Most efficient</p><ul class="da-rank good">' + best.map(li).join('') + '</ul>'
+      + '<p class="da-h">Least efficient</p><ul class="da-rank bad">' + worst.map(li).join('') + '</ul>'
+      + '<p class="da-take">On real data, the move is obvious: shift the next budget increment out of the bottom group and into the top.</p>';
+  }
+  function ansLeak(){
+    var arr = byDim(function(r){return r.program;}).filter(function(x){return x.spend>0;});
+    if(arr.length<3) return '<p>Not enough programs in this slice to compare — widen the filters and ask again.</p>';
+    arr.sort(function(a,b){return b.cpa-a.cpa;});
+    var worst = arr.slice(0,3);
+    var totalSpend = arr.reduce(function(s,x){return s+x.spend;},0);
+    var leak = worst.reduce(function(s,x){return s+x.spend;},0);
+    var li = function(x){ return '<li><b>' + progName(x.code) + '</b> — ' + fmt$(x.cpa) + '/application <span class="da-mut">(' + fmtN(x.apps) + ' apps on ' + fmt$(x.spend) + ')</span></li>'; };
+    return '<p>Where spend is working hardest to become an application — highest <b>cost per application</b>:</p>'
+      + '<ul class="da-rank bad">' + worst.map(li).join('') + '</ul>'
+      + '<p class="da-take">These three hold <b>' + fmt$(leak) + '</b> of the <b>' + fmt$(totalSpend) + '</b> in view. This is exactly where a lead-count dashboard flatters you but deposits never follow.</p>';
+  }
+  function ansPlatform(){
+    var arr = byDim(function(r){return r.platform;}).filter(function(x){return x.apps>0;});
+    if(!arr.length) return '<p>No platform data in this slice — widen the filters and ask again.</p>';
+    arr.sort(function(a,b){return a.cpa-b.cpa;});
+    var best = arr.slice(0,3);
+    var li = function(x){ return '<li><b>' + platName(x.code) + '</b> — ' + fmt$(x.cpa) + '/app <span class="da-mut">(' + fmtN(x.apps) + ' apps)</span></li>'; };
+    return {
+      html: '<p>Platforms ranked by <b>cost per application</b> in the current view:</p>'
+        + '<ul class="da-rank good">' + best.map(li).join('') + '</ul>'
+        + '<p class="da-take">Want it on the chart instead of in words? I can switch the breakdown for you.</p>',
+      action: { label: '▸ Break the chart down by platform', run: function(){ setDim('platform'); } }
+    };
+  }
+  function ansVP(){
+    var prog = byDim(function(r){return r.program;}).filter(function(x){return x.deposits>0;}).sort(function(a,b){return a.cpd-b.cpd;});
+    var d = derive(totals(filteredFacts()));
+    if(prog.length<2) return '<p>Widen the filters and I\'ll draft a reallocation you can send up.</p>';
+    var best = prog[0], worst = prog[prog.length-1];
+    return '<p><b>One-paragraph readout — copy-paste ready:</b></p>'
+      + '<p class="da-quote">This period we spent ' + fmt$(d.spend) + ' and landed ' + fmtN(d.deposits) + ' deposits at ' + fmt$(d.cpd) + ' each. '
+      + progName(best.code) + ' is our most efficient program at ' + fmt$(best.cpd) + '/deposit; ' + progName(worst.code) + ' lags at ' + fmt$(worst.cpd) + '. '
+      + 'Recommendation: move the next budget increment toward ' + progName(best.code) + ', and put ' + progName(worst.code) + ' on a landing-page and creative review before renewing spend.</p>'
+      + '<p class="da-take">Change the filters above and I\'ll rewrite this for that exact segment.</p>';
+  }
+  function fallbackHtml(){
+    return '<p>In the live product this runs against your own warehouse, so I\'d answer that directly. In this prototype I\'m wired to a handful of examples — try one of these:</p>';
+  }
+
+  /* drive the dashboard's own breakdown control */
+  function setDim(dim){
+    try{
+      STATE.dimension = dim;
+      document.querySelectorAll('#dim-seg button').forEach(function(b){ b.classList.toggle('active', b.dataset.dim===dim); });
+      if(typeof renderAll === 'function') renderAll();
+    }catch(e){}
+  }
+
+  var CHIPS = [
+    { label:'Summarize this view',                    fn:ansSummary },
+    { label:'Which programs convert deposits best?',  fn:ansBestDeposits },
+    { label:'Where is spend leaking?',                fn:ansLeak },
+    { label:'Best platform for applications?',        fn:ansPlatform }
+  ];
+
+  /* free-text routing (keyword → nearest canned answer) */
+  function route(text){
+    var q = text.toLowerCase();
+    if(/\b(vp|board|leadership|readout|exec|email|write)\b/.test(q)) return ansVP();
+    if(/summar|overview|how.*(doing|going)|tl;?dr|recap/.test(q)) return ansSummary();
+    if(/deposit|enroll|enrol|convert|efficient|best program|which program/.test(q)) return ansBestDeposits();
+    if(/platform|channel|meta|facebook|google|linkedin|tiktok|instagram/.test(q)) return ansPlatform();
+    if(/leak|wast|overspend|bleed|not.*(work|convert)|worst|high.*(cpa|cost)|\bcpa\b/.test(q)) return ansLeak();
+    if(/\bcpl\b|lead/.test(q)) return ansSummary();
+    return null;
+  }
+
+  /* ---- rendering ---- */
+  function scrollBottom(){ body.scrollTop = body.scrollHeight; }
+  function buildChip(c){
+    var b = document.createElement('button');
+    b.className = 'da-chip'; b.textContent = c.label;
+    b.addEventListener('click', function(){ ask(c.label, c.fn); });
+    return b;
+  }
+  function addUser(text){
+    var m = document.createElement('div'); m.className = 'da-msg da-user';
+    m.innerHTML = '<div class="da-bubble"><p></p></div>';
+    m.querySelector('p').textContent = text;
+    body.appendChild(m); scrollBottom();
+  }
+  function addBot(html, action){
+    var m = document.createElement('div'); m.className = 'da-msg da-bot';
+    var inner = '<div class="da-bubble">' + html;
+    if(action) inner += '<div class="da-act"><button class="da-actbtn"></button></div>';
+    inner += '</div>';
+    m.innerHTML = inner;
+    if(action){
+      var ab = m.querySelector('.da-actbtn');
+      ab.textContent = action.label;
+      ab.addEventListener('click', function(){ action.run(); ab.disabled = true; ab.textContent = '✓ Updated the chart'; });
+    }
+    body.appendChild(m); scrollBottom();
+  }
+  function appendChips(){
+    var w = document.createElement('div'); w.className = 'da-chips';
+    CHIPS.forEach(function(c){ w.appendChild(buildChip(c)); });
+    body.appendChild(w); scrollBottom();
+  }
+  function showTyping(){
+    var m = document.createElement('div'); m.className = 'da-msg da-bot';
+    m.innerHTML = '<div class="da-bubble"><div class="da-typing"><span></span><span></span><span></span></div></div>';
+    body.appendChild(m); scrollBottom(); return m;
+  }
+  function respond(result){
+    var t = showTyping();
+    setTimeout(function(){
+      t.remove();
+      if(result == null){ addBot(fallbackHtml()); appendChips(); }
+      else if(typeof result === 'string'){ addBot(result); }
+      else { addBot(result.html, result.action); }
+    }, 460 + Math.random()*360);
+  }
+  function ask(userText, fn){ addUser(userText); respond(fn()); }
+  function submitText(){
+    var v = (input.value || '').trim(); if(!v) return;
+    input.value = ''; addUser(v); respond(route(v));
+  }
+
+  /* ---- wiring ---- */
+  CHIPS.forEach(function(c){ chipsWrap.appendChild(buildChip(c)); });
+  launch.addEventListener('click', function(){ root.classList.add('open'); launch.setAttribute('aria-expanded','true'); setTimeout(function(){ try{input.focus();}catch(e){} }, 60); });
+  xBtn.addEventListener('click', function(){ root.classList.remove('open'); launch.setAttribute('aria-expanded','false'); });
+  send.addEventListener('click', submitText);
+  input.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); submitText(); } });
+
+  /* show only while the dashboard section is on screen */
+  var demo = document.getElementById('demo');
+  if('IntersectionObserver' in window && demo){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        root.classList.toggle('in-view', en.isIntersecting);
+        if(!en.isIntersecting) root.classList.remove('open');
+      });
+    }, { threshold:0, rootMargin:'0px 0px -8% 0px' });
+    io.observe(demo);
+  } else {
+    root.classList.add('in-view');
+  }
+})();
+
 /* =================== END INLINED DASHBOARD JS =================== */
 </script>
 
